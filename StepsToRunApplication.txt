@@ -1,0 +1,27 @@
+This application is developed with Azure Function. We have three applications but the request should start from PromotionEngine application, then
+internally it will invoke the others two engine based on configured rules.  
+
+Local port information for all three applications as below
+
+1. PromotionEngine application should run on default port 7071
+2. IndividualEngine application should run on port no 2001
+3. CombinedEngine application should run on port no 2002
+
+To run application in respective port no, please follow below steps
+
+1. Right click on application then select 'Properties'
+2. In the left panel click on Debug
+3. Give respective port no in Application arguments text box
+	ex for IndividualEngine: => host start --pause-on-error --port 2001
+	ex for CombinedEngine: => host start --pause-on-error --port 2002
+	
+Note
+1. There three application which should run in parallel.
+2. Both Individual and Combined rules configured in ConfigurationHelper class.
+3. The rules are mutually exclusive. By default its taking both the rules which is configured in PromotionEngine=> ConfigurationHelper class.
+If we want only one rule to be executed then need to modified the ConfigurationHelper => InitializeCommonConfigurations method.
+
+Swagger URL
+1. http://localhost:7071/api/swagger/ui for PromotionEngine
+2. http://localhost:2001/api/swagger/ui for IndividualEngine
+3. http://localhost:2002/api/swagger/ui for CombinedEngine
