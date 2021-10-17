@@ -1,5 +1,5 @@
-This application is developed with Azure Function. We have three applications but the request should start from PromotionEngine application, then
-internally it will invoke the others two engine based on configured rules.  
+This application is developed with Azure Function. We have three applications under 'FunctionsApp' folder. The request should start from 
+PromotionEngine application, then internally it will invoke the others two engine based on configured rules.  
 
 Local port information for all three applications as below
 
