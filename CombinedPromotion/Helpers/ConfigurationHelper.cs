@@ -50,12 +50,12 @@ namespace CombinedPromotion.Helpers
                 },
                 new PromotionRuleSetting
                 {
-                    OfferId = "Combine_C&D",
+                    OfferId = "Combined_C&D",
                     ProductId = "C,D",
                     OfferCount = 1,
                     Value = 30,
                     OfferOperation = "Sum",
-                    RuleType = "Combine"
+                    RuleType = "Combined"
                 }
             };
         }

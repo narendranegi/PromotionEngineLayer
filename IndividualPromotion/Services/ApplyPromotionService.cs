@@ -44,6 +44,7 @@ namespace IndividualPromotion.Services
                 {
                     totalPrice = product.ItemCount * product.CostPerItem;
                     offerApplied = false;
+                    offerId = null;
                 }
 
                 lstProductItem.Add(new CartProductOffer
