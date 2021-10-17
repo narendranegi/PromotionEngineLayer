@@ -1,0 +1,27 @@
+{
+  "name": "test",
+  "address": "bng",
+  "orderId": "test123",
+  "cartProducts": [
+    {
+      "id": "A",
+      "itemCount": 3,
+      "costPerItem": 50
+    },
+    {
+      "id": "B",
+      "itemCount": 5,
+      "costPerItem": 30
+    },
+    {
+      "id": "C",
+      "itemCount": 1,
+      "costPerItem": 20
+    },
+    {
+      "id": "D",
+      "itemCount": 1,
+      "costPerItem": 15
+    }
+  ]
+}

@@ -20,6 +20,8 @@ Note
 2. Both Individual and Combined rules configured in ConfigurationHelper class.
 3. The rules are mutually exclusive. By default its taking both the rules which is configured in PromotionEngine=> ConfigurationHelper class.
 If we want only one rule to be executed then need to modified the ConfigurationHelper => InitializeCommonConfigurations method.
+4. For all three scenario request is attached in application as ScenarioA_Request.json, ScenarioB_Request.json, ScenarioC_Request.json
+5. Request should start from PromotionEngine application.
 
 Swagger URL
 1. http://localhost:7071/api/swagger/ui for PromotionEngine
