@@ -5,37 +5,6 @@ namespace IndividualPromotionTest.Helpers
 {
     public class CartHelper
     {
-        public static CartRequest CartRequest()
-        {
-            return new CartRequest
-            {
-                OrderId = "FirstScenario",
-                Name = "Test",
-                Address = "Test",
-                CartProducts = new List<CartProduct>
-                {
-                    new CartProduct
-                    {
-                        Id = "A",
-                        ItemCount = 1,
-                        CostPerItem = 50
-                    },
-                    new CartProduct
-                    {
-                        Id = "B",
-                        ItemCount = 1,
-                        CostPerItem = 30
-                    },
-                    new CartProduct
-                    {
-                        Id = "C",
-                        ItemCount = 1,
-                        CostPerItem = 20
-                    }
-                }
-            };
-        }
-
         public static CartRequest Request_ScenarioA()
         {
             return new CartRequest
@@ -132,6 +101,43 @@ namespace IndividualPromotionTest.Helpers
                         CostPerItem = 15
                     }
                 }
+            };
+        }
+
+        public static PromotionEngineResponse Response_ScenarioA()
+        {
+            return new PromotionEngineResponse
+            {
+                OrderId = "A-Scenario",
+                CartProductOffers = new List<CartProductOffer>
+                {
+                    new CartProductOffer
+                    {
+                        Id = "A",
+                        ItemCount = 1,
+                        CostPerItem = 50,
+                        IsOfferApplied = false,
+                        TotalItemCost = 50
+                    },
+                    new CartProductOffer
+                    {
+                        Id = "B",
+                        ItemCount = 1,
+                        CostPerItem = 30,
+                        IsOfferApplied = false,
+                        TotalItemCost = 30
+                    },
+                    new CartProductOffer
+                    {
+                        Id = "C",
+                        ItemCount = 1,
+                        CostPerItem = 20,
+                        IsOfferApplied = false,
+                        TotalItemCost = 20
+                    }
+                },
+                TotalAmount = 100,
+                IsSuccess = true
             };
         }
 

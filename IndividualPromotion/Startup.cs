@@ -3,6 +3,11 @@ using AzureFunctions.Extensions.Swashbuckle.Settings;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.OpenApi;
 using System.Reflection;
+using IndividualPromotion.Helpers;
+using IndividualPromotion.Helpers.Contracts;
+using IndividualPromotion.Services;
+using IndividualPromotion.Services.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 
 [assembly: FunctionsStartup(typeof(IndividualPromotion.Startup))]
 namespace IndividualPromotion
@@ -11,7 +16,14 @@ namespace IndividualPromotion
     {
         public override void Configure(IFunctionsHostBuilder builder)
         {
+            AddScopedServices(builder);
             AddSwaggerServices(builder);
+        }
+
+        private void AddScopedServices(IFunctionsHostBuilder builder)
+        {
+            builder.Services.AddScoped<IConfigurationHelper, ConfigurationHelper>();
+            builder.Services.AddScoped<IApplyPromotionService, ApplyPromotionService>();
         }
 
         private void AddSwaggerServices(IFunctionsHostBuilder builder)
