@@ -9,28 +9,28 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace PromotionEngine.Functions
+namespace IndividualPromotion.Functions
 {
-    public class PromotionEngine
+    public class IndividualEngine
     {
-        private readonly ILogger<PromotionEngine> _logger;
+        private readonly ILogger<IndividualEngine> _logger;
 
-        public PromotionEngine(ILogger<PromotionEngine> logger)
+        public IndividualEngine(ILogger<IndividualEngine> logger)
         {
             _logger = logger;
         }
 
-        [FunctionName("RunPromotionEngine")]
-        public async Task<IActionResult> RunPromotionEngineAsync(
+        [FunctionName("RunIndividualEngine")]
+        public async Task<IActionResult> RunIndividualEngineAsync(
             [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)]
-            [RequestBodyType(typeof(CartRequest), "Promotion engine executed")]
+            [RequestBodyType(typeof(CartRequest), "Individual engine executed")]
             HttpRequest req)
         {
             
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             var cartItem = JsonConvert.DeserializeObject<CartRequest>(requestBody);
-
-            string responseMessage = "Promotion Engine function executed successfully.";
+           
+            string responseMessage = "Individual Engine function executed successfully.";
 
             return new OkObjectResult(responseMessage);
         }

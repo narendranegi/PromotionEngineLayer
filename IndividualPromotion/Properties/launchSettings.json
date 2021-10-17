@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "IndividualPromotion": {
+      "commandName": "Project",
+      "commandLineArgs": "host start --pause-on-error --port 2001"
+    }
+  }
+}

@@ -1,37 +1,38 @@
 using System.IO;
 using System.Threading.Tasks;
+using CombinedPromotion.Functions;
+using CombinedPromotionTest.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Newtonsoft.Json;
-using PromotionEngineTest.Helpers;
 
-namespace PromotionEngineTest.Functions
+namespace CombinedPromotionTest.Functions
 {
     [TestClass]
-    public class PromotionEngineTest
+    public class CombinedEngineTest
     {
-        private Mock<ILogger<PromotionEngine.Functions.PromotionEngine>> _loggerMock;
-        private PromotionEngine.Functions.PromotionEngine _promotionEngine;
+        private Mock<ILogger<CombinedEngine>> _loggerMock;
+        private CombinedEngine _combinedEngine;
 
         [TestInitialize]
         public void Initialize()
         {
-            _loggerMock = new Mock<ILogger<PromotionEngine.Functions.PromotionEngine>>();
-            _promotionEngine = new PromotionEngine.Functions.PromotionEngine(_loggerMock.Object);
+            _loggerMock = new Mock<ILogger<CombinedEngine>>();
+            _combinedEngine = new CombinedEngine(_loggerMock.Object);
         }
 
         [TestMethod]
-        public async Task TestRunPromotionEngine()
+        public async Task TestRunIndividualEngine()
         {
             var request = CartHelper.CartRequest();
             var body = JsonConvert.SerializeObject(request);
-            var result = await _promotionEngine.RunPromotionEngineAsync(HttpRequestSetup(body));
+            var result = await _combinedEngine.RunCombinedEngineAsync(HttpRequestSetup(body));
             var resultObject = (OkObjectResult)result;
             Assert.AreEqual(resultObject.StatusCode, StatusCodes.Status200OK);
-            Assert.AreEqual(resultObject.Value, "Promotion Engine function executed successfully.");
+            Assert.AreEqual(resultObject.Value, "Combined Engine function executed successfully.");
         }
 
         #region Private Methods

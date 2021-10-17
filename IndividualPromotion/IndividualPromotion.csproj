@@ -8,6 +8,9 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.13" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommonModel\CommonModel.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -17,12 +20,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Mappers\" />
-    <Folder Include="Models\" />
-    <Folder Include="Validators\" />
     <Folder Include="Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CommonModel\CommonModel.csproj" />
   </ItemGroup>
 </Project>
