@@ -17,9 +17,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CommonModel\CommonModel.csproj" />
   </ItemGroup>
 </Project>

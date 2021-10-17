@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\CombinedPromotion\CombinedPromotion.csproj" />
     <ProjectReference Include="..\CommonModel\CommonModel.csproj" />
   </ItemGroup>
