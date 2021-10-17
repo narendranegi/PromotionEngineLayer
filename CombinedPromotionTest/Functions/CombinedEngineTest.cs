@@ -1,7 +1,10 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using CombinedPromotion.Functions;
+using CombinedPromotion.Services.Contracts;
 using CombinedPromotionTest.Helpers;
+using CommonModel.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,25 +17,30 @@ namespace CombinedPromotionTest.Functions
     [TestClass]
     public class CombinedEngineTest
     {
+        private Mock<IApplyPromotionService> _applyPromotionServiceMock;
         private Mock<ILogger<CombinedEngine>> _loggerMock;
         private CombinedEngine _combinedEngine;
 
         [TestInitialize]
         public void Initialize()
         {
+            _applyPromotionServiceMock = new Mock<IApplyPromotionService>();
             _loggerMock = new Mock<ILogger<CombinedEngine>>();
-            _combinedEngine = new CombinedEngine(_loggerMock.Object);
+            _combinedEngine = new CombinedEngine(_applyPromotionServiceMock.Object, _loggerMock.Object);
         }
 
         [TestMethod]
-        public async Task TestRunIndividualEngine()
+        public async Task TestRunCombinedEngine()
         {
-            var request = CartHelper.CartRequest();
+            var request = CartHelper.Request_ScenarioA();
             var body = JsonConvert.SerializeObject(request);
+            MockApplyPromotionServiceResponse(CartHelper.Response_ScenarioA());
             var result = await _combinedEngine.RunCombinedEngineAsync(HttpRequestSetup(body));
             var resultObject = (OkObjectResult)result;
             Assert.AreEqual(resultObject.StatusCode, StatusCodes.Status200OK);
-            Assert.AreEqual(resultObject.Value, "Combined Engine function executed successfully.");
+            Assert.IsTrue(resultObject.Value is PromotionEngineResponse);
+            var content = resultObject.Value as PromotionEngineResponse;
+            Assert.IsTrue(content.IsSuccess);
         }
 
         #region Private Methods
@@ -47,6 +55,16 @@ namespace CombinedPromotionTest.Functions
             stream.Position = 0;
             reqMock.Setup(req => req.Body).Returns(stream);
             return reqMock.Object;
+        }
+
+        private void MockApplyPromotionServiceResponse(PromotionEngineResponse response, bool isSuccess = true)
+        {
+            if (isSuccess)
+                _applyPromotionServiceMock.Setup(x => x.ApplyPromotion(It.IsAny<CartRequest>()))
+                    .Returns(response);
+            else
+                _applyPromotionServiceMock.Setup(x => x.ApplyPromotion(It.IsAny<CartRequest>()))
+                    .Throws<Exception>();
         }
 
         #endregion

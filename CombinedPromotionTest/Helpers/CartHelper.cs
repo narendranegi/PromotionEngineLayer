@@ -135,6 +135,43 @@ namespace CombinedPromotionTest.Helpers
             };
         }
 
+        public static PromotionEngineResponse Response_ScenarioA()
+        {
+            return new PromotionEngineResponse
+            {
+                OrderId = "A-Scenario",
+                CartProductOffers = new List<CartProductOffer>
+                {
+                    new CartProductOffer
+                    {
+                        Id = "A",
+                        ItemCount = 1,
+                        CostPerItem = 50,
+                        IsOfferApplied = false,
+                        TotalItemCost = 50
+                    },
+                    new CartProductOffer
+                    {
+                        Id = "B",
+                        ItemCount = 1,
+                        CostPerItem = 30,
+                        IsOfferApplied = false,
+                        TotalItemCost = 30
+                    },
+                    new CartProductOffer
+                    {
+                        Id = "C",
+                        ItemCount = 1,
+                        CostPerItem = 20,
+                        IsOfferApplied = false,
+                        TotalItemCost = 20
+                    }
+                },
+                TotalAmount = 100,
+                IsSuccess = true
+            };
+        }
+
         public static List<PromotionRuleSetting> Get_Combine_Rule_Setting()
         {
             return new List<PromotionRuleSetting>
